@@ -1,0 +1,40 @@
+--- a/CoolChic-5.0.1/experiments/video_metrics.py
++++ b/CoolChic-5.0.1/experiments/video_metrics.py
+@@ -6,7 +6,7 @@
+   lpips : lpips.LPIPS(net="alex"), normalize=True
+   dists : DISTS_pytorch.DISTS
+   vmaf  : whole-clip libvmaf on BT.601 luma from RGB (NVRC/loss_utils.compute_vmaf_scores)
+-  bpp   : bytes-per-pixel = bytes / (T*H*W), taken from rate.txt (entropy-model estimate,
++  bpp   : bits-per-pixel = 8 * bytes / (T*H*W), taken from rate.txt (entropy-model estimate,
+           bits/px) unless --bytes is given (real bitstream size)
+ 
+ The yuv is converted to RGB PNGs with ffmpeg defaults, mirroring how the PNG source was
+@@ -78,13 +78,13 @@
+     assert len(dec) == T
+ 
+     # rate
+-    bpp_bytes = None
++    bpp_bits = None
+     if args.bytes:
+-        bpp_bytes = args.bytes / (T * W * H)
++        bpp_bits = 8 * args.bytes / (T * W * H)
+     elif args.run and (run / "rate.txt").exists():
+-        m = re.search(r"rate_bpp\(bits/px\)=([0-9.]+)", (run / "rate.txt").read_text())
++        m = re.search(r"rate_bpp\(bits/px\)=([0-9.eE+-]+)", (run / "rate.txt").read_text())
+         if m:
+-            bpp_bytes = float(m.group(1)) / 8
++            bpp_bits = float(m.group(1))
+ 
+     dev = "cuda:0" if torch.cuda.is_available() else "cpu"
+     import lpips
+@@ -117,8 +117,8 @@
+         w.writeheader(); w.writerows(rows)
+ 
+     m = {k: float(np.nanmean([r[k] for r in rows])) for k in ("psnr", "lpips", "dists", "vmaf")}
+-    summ = (f"{args.tag}\tframes={T}\tbpp={bpp_bytes if bpp_bytes is None else f'{bpp_bytes:.5f}'}"
+-            f"\tpsnr={m['psnr']:.4f}\tlpips={m['lpips']:.4f}\tdists={m['dists']:.4f}\tvmaf={m['vmaf']:.4f}")
++    summ = (f"{args.tag}\tframes={T}\tbpp={bpp_bits if bpp_bits is None else f'{bpp_bits:.5f}'}"
++            f"\trate_unit=bits/pixel/frame\tpsnr={m['psnr']:.4f}\tlpips={m['lpips']:.4f}\tdists={m['dists']:.4f}\tvmaf={m['vmaf']:.4f}")
+     print(summ)
+     out_csv.with_name(out_csv.stem + "_summary.txt").write_text(summ + "\n")
+ 

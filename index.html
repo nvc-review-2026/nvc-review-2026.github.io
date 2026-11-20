@@ -1,71 +1,92 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NVC Review 2025</title>
-    <meta
-      name="description"
-      content="A living survey page for Neural View/Video Compression related works."
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header class="hero">
-      <div class="container">
-        <p class="tag">Work in progress</p>
-        <h1>NVC Review 2025</h1>
-        <p class="subtitle">
-          A lightweight scaffold for collecting papers, benchmarks, methods, and
-          resources.
-        </p>
-        <nav class="hero-links" aria-label="Quick links">
-          <a href="#overview">Overview</a>
-          <a href="#papers">Papers</a>
-          <a href="#benchmarks">Benchmarks</a>
-          <a href="#resources">Resources</a>
-        </nav>
-      </div>
-    </header>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Video Compression Review</title>
+<meta name="description" content="Advances in Neural Video Compression: A Review and Benchmarking — test conditions and benchmark code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="hero-wrap"><header class="hero">
+  <h1>Advances in Neural Video Compression:<br>A Review and Benchmarking</h1>
+  <p class="authors">
+    Ge Gao, Chen Feng, Yuxuan Jiang, Tianhao Peng, Ho Man Kwan, Siyue Teng, Chengxi Zeng,
+    Yixuan Li, Changqi Wang, Robbie Hamilton, Zihao Qi, Fan Zhang, David Bull
+  </p>
+  <p class="affil">Visual Information Lab, University of Bristol, UK</p>
+  <nav class="buttons">
+    <a class="btn" href="#" title="Link coming soon">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1h5l4 4v10H4zM9 1v4h4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Paper</a>
+    <a class="btn" href="https://github.com/nvc-review-2026/nvc-review-2026.github.io">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>Star us on GitHub</a>
+    <a class="btn btn-ghost" href="#code">Code</a>
+  </nav>
+</header></div>
 
-    <main class="container">
-      <section id="overview" class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is intentionally minimal so it can be published quickly.
-          Add your project intro and key messages here first, then refine the
-          design later.
-        </p>
-      </section>
+<main>
+<section id="news">
+  <h2>News</h2>
+  <!-- Add the newest item at the top. -->
+  <ul class="news">
+    <li><time datetime="2026-10">Oct 2026</time> Project page and benchmark code released.</li>
+  </ul>
+</section>
 
-      <section id="papers" class="card">
-        <h2>Paper List (Placeholder)</h2>
-        <ul>
-          <li>2025 - Example paper A</li>
-          <li>2025 - Example paper B</li>
-          <li>2024 - Example paper C</li>
-        </ul>
-      </section>
+<section>
+  <h2>Abstract</h2>
+  <p>While conventional video coding standards remain predominant in real-world applications, neural video compression has emerged over the past decade as an active research area, offering alternative solutions with potentially significant coding gains through end-to-end optimization. Owing to the rapid pace of recent progress, existing reviews of neural video coding quickly become outdated and often lack a systematic taxonomy and meaningful benchmarking. To address this gap, we provide a comprehensive review of two major classes of neural video codecs—scene-agnostic and scene-adaptive—with a focus on their design characteristics and limitations. More importantly, we benchmark representative state-of-the-art methods from each category under common test conditions recommended by video coding standardization bodies. This provides, to the best of our knowledge, the first large-scale unified comparison between conventional and neural video codecs under controlled settings. Our results show that neural codecs can already achieve competitive, and in some cases superior, performance relative to VTM and AVM, although they still fall short of ECM in overall coding efficiency under both low delay and random access configurations.</p>
+</section>
 
-      <section id="benchmarks" class="card">
-        <h2>Benchmarks (Placeholder)</h2>
-        <p>Track datasets, metrics, and leaderboard links here.</p>
-      </section>
+<section id="conditions">
+  <h2>Test conditions</h2>
+  <details open><summary>Baselines</summary>
+    <p>Six conventional codecs: VTM-20.0 (VVC reference software), VVenC/VVdeC (optimised VVC implementation), AV1, ECM and AVM (exploratory models beyond VVC and AV1 from MPEG JVET and AOM), and NVIDIA NVENC as a hardware encoder. All are run in low delay (LD) and random access (RA) configurations, following the JVET Common Test Conditions as closely as possible.</p></details>
+  <details><summary>Neural codecs</summary>
+    <p>We picked methods that are <b>recent</b> (published in the last three years), <b>high-performing</b> and <b>reproducible</b> (public code with pretrained models or training code).</p>
+    <ul>
+      <li><b>Scene-agnostic, LD:</b> MaskCRT, DCVC-DC, DCVC-FM, DCVC-RT, DCVC-UF (distortion-oriented); GVC-1D (perceptual).</li>
+      <li><b>Scene-agnostic, RA:</b> B-CANF, BRHVC, DCVC-UF (HT-S), which uses a chunk-based structure with context carried across chunks rather than hierarchical B-frames.</li>
+      <li><b>Scene-adaptive:</b> PNVC (LD and RA); C3, HiNeRV, NVRC and GIViC (RA). Apart from PNVC and GIViC, these share optimised parameters across the whole sequence rather than following a fixed GoP.</li>
+    </ul></details>
+  <details><summary>Datasets</summary>
+    <p>UVG, MCL-JCV, HEVC Class B–E and AOM A2–A5. 4K/UHD sequences are excluded because of the compute and memory cost of most neural codecs.</p></details>
+  <details><summary>Quality metrics</summary>
+    <p>PSNR, MS-SSIM, VMAF, VMAF-NEG, LPIPS and DISTS (the last two are perceptual metrics). All distortions are measured in YUV 4:2:0. PSNR combines the channels as (6·PSNR<sub>Y</sub> + PSNR<sub>Cb</sub> + PSNR<sub>Cr</sub>)/8 per frame. VMAF is computed on the MSE-optimised NVC models.</p></details>
+  <details><summary>Bitrate and BD-rate</summary>
+    <p>Bitrate comes from the full serialised bitstream: payload, headers, side information and any transmitted scene-specific model parameters. Shared pretrained models are assumed to be at the decoder already and are not counted. R = 8SF/T bit/s, where S is the size in bytes, F the frame rate and T the number of frames. BD-rate is computed per sequence against VTM-20.0 LD (the anchor for both LD and RA) and then averaged over each dataset. Curves are never pooled across sequences first.</p></details>
+  <details><summary>Complexity and caveats</summary>
+    <p>We report model size, kMAC/pixel and encoding/decoding FPS. Conventional codecs are timed on a dual-socket ARM Neoverse-V2 CPU and neural codecs on one NVIDIA A100 GPU, so the FPS numbers are not normalised across hardware. Two further caveats: DCVC-DC and DCVC-FM are numerically unstable on the 10-bit AOM A2–A5 sequences, and MaskCRT is trained in RGB, so it needs colour conversion.</p></details>
+</section>
 
-      <section id="resources" class="card">
-        <h2>Resources</h2>
-        <ul>
-          <li><a href="https://github.com/">GitHub repo</a></li>
-          <li><a href="https://arxiv.org/">arXiv search</a></li>
-          <li><a href="#">Add your links</a></li>
-        </ul>
-      </section>
-    </main>
+<section id="code">
+  <h2>Benchmark code</h2>
+  <p>The scripts used for encoding, quality evaluation, BD-rate computation and complexity profiling are in <a href="https://github.com/nvc-review-2026/nvc-review-2026.github.io/tree/main/benchmark"><code>benchmark/</code></a>. See its README for the environment variables and how to run them.</p>
+</section>
 
-    <footer class="footer">
-      <div class="container">
-        <p>Last updated: April 20, 2026</p>
-      </div>
-    </footer>
-  </body>
+<section id="bibtex">
+  <h2>BibTeX</h2>
+  <div class="bib"><button id="copybib">Copy</button><pre id="bibtext">@article{gao2026nvcreview,
+  title   = {Advances in Neural Video Compression: A Review and Benchmarking},
+  author  = {Gao, Ge and Feng, Chen and Jiang, Yuxuan and Peng, Tianhao and Kwan, Ho Man and Teng, Siyue and Zeng, Chengxi and Li, Yixuan and Wang, Changqi and Hamilton, Robbie and Qi, Zihao and Zhang, Fan and Bull, David},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre></div>
+</section>
+
+<section id="ack">
+  <h2>Acknowledgements</h2>
+  <p>This work was supported by the UKRI MyWorld Strength in Places Programme (SIPF00006/1). We thank the authors of the benchmarked codecs for releasing their code and models. The page layout is inspired by the <a href="https://w-m.github.io/3dgs-compression-survey/">3DGS Compression Survey</a>.</p>
+</section>
+</main>
+<footer>© 2026 Visual Information Lab, University of Bristol</footer>
+<script>
+document.getElementById('copybib').onclick = async (e) => {
+  await navigator.clipboard.writeText(document.getElementById('bibtext').textContent);
+  e.target.textContent = 'Copied'; setTimeout(() => (e.target.textContent = 'Copy'), 1500);
+};
+</script>
+</body>
 </html>
